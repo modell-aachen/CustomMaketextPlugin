@@ -12,7 +12,7 @@
       var $count = parseInt($('.pobody tr:last').attr('data-count'))+1;
       var $newElem = $('.pobody tr:last').clone();
       $newElem.removeAttr('style');
-      $newElem.removeAttr('data-count','');
+      $newElem.attr('data-count',$count);
       //if this is the first row
       $newElem.find('input[name="0_head_str"]').attr('name',$count+'_str');
       $newElem.find('input[type="text"]').each(function(){

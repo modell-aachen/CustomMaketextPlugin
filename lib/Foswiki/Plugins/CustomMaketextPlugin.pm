@@ -75,8 +75,8 @@ sub _readPOs{
         foreach my $f ( keys %$href ) {
             my $po = $href->{$f};
             next unless defined $po->{msgid};
-            $translations->{ $po->{msgid} } -> {$file}-> {str} = $po->{msgstr};
-            $translations->{ $po->{msgid} } -> {$file}-> {com} = $po->{comment};
+            $translations->{ Encode::decode_utf8($po->{msgid}) } -> {$file}-> {str} = Encode::decode_utf8($po->{msgstr});
+            $translations->{ Encode::decode_utf8($po->{msgid}) } -> {$file}-> {com} = Encode::decode_utf8($po->{comment});
             $languages->{$file} = 1;
         }
     }
@@ -178,7 +178,7 @@ sub _restSave{
                 $msgstr =~ s/\\n/\n/g;
                 $msgid = "";
             }
-            $pos->{$count} = new Locale::PO(-msgid=>$msgid, -msgstr=> Encode::encode_utf8($msgstr), -comment=> $msgcom);
+            $pos->{$count} = new Locale::PO(-msgid=>Encode::encode_utf8($msgid), -msgstr=> Encode::encode_utf8($msgstr), -comment=> Encode::encode_utf8($msgcom));
             $count ++;
         }
         Locale::PO->save_file_fromhash($file, $pos);
