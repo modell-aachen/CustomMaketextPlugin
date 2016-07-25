@@ -1,0 +1,8 @@
+data/System/CustomMaketextPlugin.txt 0777
+data/System/CustomizeZZCustom.txt 0777
+lib/Foswiki/Plugins/CustomMaketextPlugin.pm 0777
+lib/Foswiki/Plugins/CustomMaketextPlugin/Config.spec 0777
+locale/CustomMaketextPlugin/de.po 0777
+pub/System/CustomMaketextPlugin/js/ui.js 0777
+pub/System/CustomMaketextPlugin/css/ui.css 0777
+

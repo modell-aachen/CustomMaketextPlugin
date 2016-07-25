@@ -1,0 +1,17 @@
+---+!! CustomMaketext
+
+
+
+---++ Installation
+Click and Install ;)
+
+---++ Configuration
+
+--- CUSTOMMAKETEXT_WEB 
+You can set the source/target WEB (default ZZCustom) with the Preference '   Set * CUSTOMMAKETEXT_WEB = ZZCustom'
+
+---++ Info
+
+|  Author: | IngoKruetzen |
+|  Home: | http://www.modell-aachen.de |
+|  Support: | http://www.modell-aachen.de |

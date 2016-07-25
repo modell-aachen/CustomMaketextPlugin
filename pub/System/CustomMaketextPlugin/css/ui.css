@@ -1,0 +1,51 @@
+.cmaketext input[type=text], .cmaketext textarea, .cmaketext select{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+.cmaketext select{
+    margin-right: 10px;
+}
+.cmaketext input[type=submit], .cmaketext input[type=button]{
+    background: #59C;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+.cmaketext input[type=submit]:hover, .cmaketext input[type=button]:hover{
+    background: #59E;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    cursor: pointer;
+}
+.cmaketext .tablesorter.custom td {
+    text-align: center;
+}
+.cmaketext .tablesorter.custom th {
+    border: 1px solid #FFF;
+    background-color: #59C;
+    color: #FFF;
+    display: table-cell;
+    text-align: center;
+    padding: 1em;
+    margin: .5em 1em;
+}
+.cmaketext i.fa-trash{
+    padding-left: 10px;
+    cursor: pointer;
+}
+.cmaketext i.remove-msgid{
+    color: red;
+}
+.cmaketext i.remove-lang {
+    color: #770303;
+}
