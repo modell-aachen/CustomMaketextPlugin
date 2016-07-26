@@ -1,22 +1,18 @@
 # See bottom of file for default license and copyright information
-
 package Foswiki::Plugins::CustomMaketextPlugin;
 
 use strict;
 use warnings;
 
 use Encode;
-
 use Locale::PO;
-
 use Foswiki::Plugins::JQueryPlugin;
 
-our $VERSION = '1';
-our $RELEASE = "1";
+our $VERSION = '1.0';
+our $RELEASE = '1.0';
+our $SHORTDESCRIPTION = 'Customize ZZCustom in frontend';
 
-our $SHORTDESCRIPTION = '';
-
-#bin config does not validate the string correctly
+# bin config does not validate the string correctly
 our $DEFAULTHEADER = <<'END_HEADER';
 Project-Id-Version: CustomMaketextPlugin $Id
 Report-Msgid-Bugs-To: support@modell-aachen.de
