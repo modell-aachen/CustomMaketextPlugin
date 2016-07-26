@@ -1,7 +1,7 @@
 # ---+ Extensions
 # ---++ CustomMaketext
 
-# **PERL**
+# **STRING 80x15**
 # Default header for PO-files
 $Foswiki::cfg{CustomMaketextPlugin}{Header} = 'Project-Id-Version: CustomMaketextPlugin $Id
 Report-Msgid-Bugs-To: support@modell-aachen.de
@@ -14,5 +14,5 @@ Language: LANG
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Plural-Forms: nplurals=2; plural=n != 1;.
+Plural-Forms: nplurals=2; plural=n != 1;
 X-Generator: custommaketextplugin';
