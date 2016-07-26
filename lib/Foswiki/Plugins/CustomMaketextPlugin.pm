@@ -195,6 +195,7 @@ sub _restAddLanguage{
     return unless defined $language;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || '';
+    $defHeader =~ s/\\n//g;
     my $date = localtime;
     $defHeader =~ s/(\"PO-Revision-Date:).*?(\")/$1$date$2/;
     my $langHeader = $language;
