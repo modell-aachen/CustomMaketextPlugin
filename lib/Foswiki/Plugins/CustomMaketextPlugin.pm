@@ -16,6 +16,23 @@ our $RELEASE = "1";
 
 our $SHORTDESCRIPTION = '';
 
+#bin config does not validate the string correctly
+our $DEFAULTHEADER = <<'END_HEADER';
+Project-Id-Version: CustomMaketextPlugin $Id
+Report-Msgid-Bugs-To: support@modell-aachen.de
+POT-Creation-Date: CREATED
+PO-Revision-Date: POREVISION
+Last-Translator: Modell Aachen <access@modell-aachen.de>
+Language-Team: LANG <http://translate.modell-aachen.de/projects/custommaketextplugin
+/releaseriga/LANG/>
+Language: LANG
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=2; plural=n != 1
+X-Generator: custommaketextplugin
+END_HEADER
+
 sub initPlugin {
     my ( $topic, $web, $user, $installWeb ) = @_;
     # check for Plugins.pm versions
@@ -207,8 +224,8 @@ sub _restAddLanguage{
     my $language = $q->param('language');
     return unless defined $language;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
-    my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || '';
-    $defHeader =~ s/\\n//g;
+    my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || $DEFAULTHEADER;
+    # $defHeader =~ s/\\n//g;
     my $date = localtime;
     $defHeader =~ s/(\"PO-Revision-Date:).*?(\")/$1$date$2/;
     my $langHeader = $language;
