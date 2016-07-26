@@ -31,23 +31,12 @@ sub initPlugin {
     Foswiki::Func::registerRESTHandler( 'addlanguage', \&_restAddLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'removelanguage', \&_restRemoveLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'save', \&_restSave, %restopts );
+    Foswiki::Func::registerRESTHandler( 'createweb', \&_restcreateWebDir, %restopts );
     return 1;
 }
 sub _customizeMaketext {
     my( $session, $params, $topic, $web, $topicObject ) = @_;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
-    #check if web exist
-    my $path = "$Foswiki::cfg{LocalesDir}/$web/";
-    unless(-d $path){
-        Foswiki::Func::writeWarning("$path does not exist");
-        return;
-    }
-
-    my ( $translations, $languages ) = _readPOs($web);
-    my $html = '<div class="cmaketext">'._generateInfoText();
-    $html .= _generateLanguageSelect($web,$languages);
-    $html .= _generateInputs($translations,$languages).'</div>';
-
     my $pluginURL = '%PUBURLPATH%/%SYSTEMWEB%/CustomMaketextPlugin';
     my $styles = "<link rel='stylesheet' type='text/css' media='all' href='%PUBURLPATH%/%SYSTEMWEB%/FontAwesomeContrib/css/font-awesome.min.css?version=$RELEASE' /><link rel='stylesheet' type='text/css' media='all' href='%PUBURLPATH%/%SYSTEMWEB%/CustomMaketextPlugin/css/ui.css' />";
     Foswiki::Func::addToZone( 'head', 'CustomMaketextPlugin::STYLES', $styles);
@@ -57,6 +46,18 @@ sub _customizeMaketext {
 
     my $scripts = '<script type="text/javascript" src="'.$pluginURL.'/js/ui.js"></script>';
   Foswiki::Func::addToZone('script', 'CustomMaketextPlugin::SCRIPTS', $scripts, "JQUERYPLUGIN::FOSWIKI, JQUERYPLUGIN::FOSWIKI::PREFERENCES, JQUERYPLUGIN::UI::AUTOCOMPLETE, JQUERYPLUGIN::JQP::UNDERSCORE JQUERYPLUGIN::JQP::SWEETALERT2, JavascriptFiles/strikeone" );
+    #check if web exist
+    my $path = "$Foswiki::cfg{LocalesDir}/$web/";
+    unless(-d $path){
+        Foswiki::Func::writeWarning("$path does not exist");
+        return '<div class="cmaketext"><form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/createweb" enctype="application/x-www-form-urlencoded"><p>'.$web.'-Web Does not exist.</p><input type="hidden" name="web" value="'.$web.'"><input type="submit" class="btn-primary saveall" value="%MAKETEXT{"Create Web"}%"></form></div>';
+    }
+
+    my ( $translations, $languages ) = _readPOs($web);
+    my $html = '<div class="cmaketext">'._generateInfoText();
+    $html .= _generateLanguageSelect($web,$languages);
+    $html .= _generateInputs($translations,$languages).'</div>';
+
 
     return $html;
 }
@@ -185,6 +186,18 @@ sub _restSave{
         $pos = {};
     }
     _restartApache2();
+    $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
+    return undef;
+}
+sub _restcreateWebDir{
+    my ($session, $subject, $verb, $response) = @_;
+    my ($session, $subject, $verb, $response) = @_;
+    my $q = $session->{request};
+    my $web = $q->param('web');
+    my $file = "$Foswiki::cfg{LocalesDir}/$web";
+    unless(mkdir $file) {
+        die "Unable to create $file\n";
+    }
     $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
     return undef;
 }
