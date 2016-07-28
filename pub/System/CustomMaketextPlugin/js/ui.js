@@ -1,7 +1,7 @@
 (function($) {
   $(document).ready(function() {
     bindRemove();
-    bindRemoveLanuage();
+    bindRemoveLanguage();
     $('.addlanguage').bind('click', function(){
       $.blockUI();
     });
@@ -42,7 +42,7 @@
       });
     });
   }
-  function bindRemoveLanuage(){
+  function bindRemoveLanguage(){
     $('.remove-lang').bind('click', function(){
       var $lang = $(this).attr('data-lang');
       swal({

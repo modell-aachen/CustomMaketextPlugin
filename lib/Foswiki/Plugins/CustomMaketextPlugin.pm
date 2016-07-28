@@ -4,8 +4,13 @@ package Foswiki::Plugins::CustomMaketextPlugin;
 use strict;
 use warnings;
 
+# Core modules
 use Encode;
+
+# Extra modules
 use Locale::PO;
+
+# Foswiki dependencies
 use Foswiki::Plugins::JQueryPlugin;
 
 our $VERSION = '1.0';
@@ -39,7 +44,7 @@ sub initPlugin {
     }
 
     Foswiki::Func::registerTagHandler( 'CUSTOMIZEMAKETEXT', \&_customizeMaketext );
-    
+
     my %restopts = (authenticate => 1, validate => 0, http_allow => 'POST');
     Foswiki::Func::registerRESTHandler( 'addlanguage', \&_restAddLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'removelanguage', \&_restRemoveLanguage, %restopts );
