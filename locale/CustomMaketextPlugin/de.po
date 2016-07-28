@@ -27,3 +27,7 @@ msgstr "Sprache hinzufügen"
 # create info text
 msgid "On this page you can create custom translations for each language, which is activated."
 msgstr "Auf dieser Seite können Sie neue Übersetzungen für die aktivierten Sprachen erstellen."
+
+# restart webserver
+msgid "Reload Webserver"
+msgstr "Webserver neustarten"

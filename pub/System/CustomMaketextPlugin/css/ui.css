@@ -27,6 +27,15 @@
     -webkit-box-shadow:none;
     cursor: pointer;
 }
+.apache2 {
+    float: right;
+}
+.cmaketext .apache2 input[type=button]:hover{
+    background-color: #D40202;
+}
+.cmaketext .apache2 input[type=button]{
+    background-color: #AD0202;
+}
 .cmaketext .tablesorter.custom td {
     text-align: center;
 }

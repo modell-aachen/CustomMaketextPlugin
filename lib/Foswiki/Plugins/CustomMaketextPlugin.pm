@@ -81,6 +81,12 @@ sub _customizeMaketext {
 
     my $scripts = '<script type="text/javascript" src="'.$pluginURL.'/js/ui.js"></script>';
   Foswiki::Func::addToZone('script', 'CustomMaketextPlugin::SCRIPTS', $scripts, "JQUERYPLUGIN::FOSWIKI, JQUERYPLUGIN::FOSWIKI::PREFERENCES, JQUERYPLUGIN::UI::AUTOCOMPLETE, JQUERYPLUGIN::JQP::UNDERSCORE JQUERYPLUGIN::JQP::SWEETALERT2, JavascriptFiles/strikeone" );
+
+    my $lang = $session->i18n->language();
+    Foswiki::Func::addToZone( 'script', 'CustomMaketextPlugin::I18N', <<SCRIPT, 'jsi18nCore' );
+<script type="text/javascript" src="$pluginURL/js/i18n/jsi18n.$lang.js"></script>
+SCRIPT
+
     #check if web exist
     my $path = "$Foswiki::cfg{LocalesDir}/$web/";
     unless(-d $path){
@@ -133,7 +139,7 @@ sub _generateLanguageSelect{
     my $res = '<form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/addlanguage" enctype="application/x-www-form-urlencoded">';
     $res .= '<input type="hidden" name="web" value="'.$web.'"><select name="language">';
     my $count = 0;
-    foreach (@allLanguages){
+    foreach ( sort {lc $a cmp lc $b} @allLanguages){
         my $lang = $_.'.po';
         unless (exists %$languages->{$lang}){
             $count++;
@@ -185,7 +191,7 @@ sub _generateInputs{
     $res .= '<input type="submit" value="%MAKETEXT{"Save"}%" class="btn-primary saveall"/></form>';
     # Add Reload button if allowed
     if (_reloadAllowed()) {
-        $res .= '<input type="submit" value="%MAKETEXT{"Reload Webserver"}%" class="btn-primary reloadhttpd"/></form>';
+        $res .= '<div class="apache2"><input type="button" value="%MAKETEXT{"Reload Webserver"}%" class="btn-primary reloadhttpd"/></div>';
     }
     return $res;
 }
