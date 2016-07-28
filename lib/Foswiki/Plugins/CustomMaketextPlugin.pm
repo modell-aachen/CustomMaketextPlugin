@@ -53,15 +53,14 @@ sub initPlugin {
 
 # Helper functions
 
-
 # Check if reload is allowed in current session.
 sub _reloadAllowed {
-    my $allowReload = $Foswiki::cfg{CustomMaketextPlugin}{AllowReload} || 'no-one';
-    if (($allowReload eq 'admin' && (Foswiki::Func::isAnAdmin())) || $allowReload eq 'everyone') {
-        return 1;
-    } else {
-        return 0;
+    for my $group (split(/\s+,\s+/, ($Foswiki::cfg{CustomMaketextPlugin}{AllowReload} || 'AdminGroup'))) {
+        if (Foswiki::Func::isGroupMember($group, Foswiki::Func::getWikiName())) {
+            return 1;
+        }
     }
+    return 0;
 }
 
 # Text generators and REST handlers
@@ -220,7 +219,6 @@ sub _restSave{
         Locale::PO->save_file_fromhash($file, $pos);
         $pos = {};
     }
-    _restartApache2();
     $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
     return undef;
 }
