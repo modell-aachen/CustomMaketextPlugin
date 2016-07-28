@@ -45,8 +45,26 @@ sub initPlugin {
     Foswiki::Func::registerRESTHandler( 'removelanguage', \&_restRemoveLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'save', \&_restSave, %restopts );
     Foswiki::Func::registerRESTHandler( 'createweb', \&_restcreateWebDir, %restopts );
+    # GET enabled handlers
+    $restopts{http_allow} = 'POST,GET';
+    Foswiki::Func::registerRESTHandler( 'reloadhttpd', \&_restReloadHttpd, %restopts );
     return 1;
 }
+
+# Helper functions
+
+
+# Check if reload is allowed in current session.
+sub _reloadAllowed {
+    my $allowReload = $Foswiki::cfg{CustomMaketextPlugin}{AllowReload} || 'no-one';
+    if (($allowReload eq 'admin' && (Foswiki::Func::isAnAdmin())) || $allowReload eq 'everyone') {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+# Text generators and REST handlers
 sub _customizeMaketext {
     my( $session, $params, $topic, $web, $topicObject ) = @_;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
@@ -161,6 +179,10 @@ sub _generateInputs{
     $res .= '</tbody></table>';
     $res .= '<br/><i style="color:green; cursor: pointer;" class="fa fa-plus addline" aria-hidden="true">%MAKETEXT{"Add line"}%</i><br/><br/>';
     $res .= '<input type="submit" value="%MAKETEXT{"Save"}%" class="btn-primary saveall"/></form>';
+    # Add Reload button if allowed
+    if (_reloadAllowed()) {
+        $res .= '<input type="submit" value="%MAKETEXT{"Reload Webserver"}%" class="btn-primary reloadhttpd"/></form>';
+    }
     return $res;
 }
 sub _restSave{
@@ -239,6 +261,17 @@ sub _restAddLanguage{
     $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
     return undef;
 }
+sub _restReloadHttpd {
+    my ($session, $subject, $verb, $response) = @_;
+    my $q = $session->{request};
+    if (_reloadAllowed()) {
+        Foswiki::Sandbox->sysCommand(
+            ($Foswiki::cfg{CustomMaketextPlugin}{ReloadCommand} || 'sudo service apache2 reload')
+        );
+        return 200;
+    }
+    return 403;
+}
 sub _restRemoveLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
@@ -248,22 +281,8 @@ sub _restRemoveLanguage{
     if(-f $file){
         unlink $file;
     }
-    _restartApache2();
     $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
     return undef;
-}
-sub _restartApache2{
-    # my $t = new Proc::ProcessTable( 'cache_ttys' => 1 );  
-
-    # foreach my $p ( @{$t->table} ){
-    #     if ($p->cmndline =~ /perl.*dispatch.fcgi/) {
-    #         # my $run_time_min = $p->time/(1000000*60);
-    #         # if ($run_time_min >= 15) {
-    #             # print "Found this job to kill: ". $p->pid . $p->cmndline."\n". $run_time_min . "\n";
-    #             kill 'KILL', $p->pid;
-    #         # }   
-    #     }   
-    # }
 }
 1;
 
