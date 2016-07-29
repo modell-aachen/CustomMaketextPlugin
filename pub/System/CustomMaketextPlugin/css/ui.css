@@ -58,3 +58,13 @@
 .cmaketext i.remove-lang {
     color: #770303;
 }
+
+.sweet-alert p{
+    margin-bottom: 30px !important;
+}
+.sweet-alert h2{
+    border-width: 0px;
+}
+.sweet-alert hr{
+    height: 0px !important;
+}

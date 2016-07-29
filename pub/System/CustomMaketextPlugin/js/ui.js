@@ -99,9 +99,8 @@
             }
           }).done(function() {
             $.unblockUI();
-            console.log(status);
             switch (status) {
-              case "200": { swal(jsi18n.get('custommaketext',"Restart"), jsi18n.get('custommaketext',"Webserver successfully restarted."), "success"); break; }
+              case "200": { swal(jsi18n.get('custommaketext',"Restart"), jsi18n.get('custommaketext',"Webserver successfully restarted. It could take a few minutes to see the changes."), "success"); break; }
               case "403": { swal(jsi18n.get('custommaketext',"Restart"), jsi18n.get('custommaketext',"You are not allowed to restart webserver."), "error"); break; }
               default: { swal(jsi18n.get('custommaketext',"Restart"), jsi18n.get('custommaketext',"Internal Server Error"), "error"); break; }
             }

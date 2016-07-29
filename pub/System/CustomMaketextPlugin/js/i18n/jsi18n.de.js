@@ -9,9 +9,9 @@ if (jsi18n && typeof jsi18n.add === "function") {
     "You will not be able to recover the translations!":"Es gibt keine Möglichkeit die gelöschten Übersetzungen widerherzustellen.",
     "Yes, delete it!":"Ja, bitte löschen!",
     "Yes, restart!":"Ja",
-    "Webserver successfully restarted.":"Webserver wurde erfolgreich neugestartet.",
+    "Webserver successfully restarted. It could take a few minutes to see the changes.":"Webserver wurde erfolgreich neugestartet. Es kann jedoch ein paar Minuten dauern ehe die Änderungen sichtbar sind.",
     "You are not allowed to restart webserver.":"Sie sind nicht berechtigt, den Webserver neuzustarten",
     "Internal Server Error":"Interner Server Fehler",
-    "Some user's could get an Error-404.":"Einige Nutzer können einen Fehler (404) bekommen."
+    "Some user's could get an Error-404.":"Einige Nutzer können während des Neustarts einen Fehler bekommen."
   });
 }
