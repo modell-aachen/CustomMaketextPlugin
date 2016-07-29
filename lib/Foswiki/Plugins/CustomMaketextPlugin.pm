@@ -270,10 +270,14 @@ sub _restReloadHttpd {
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     if (_reloadAllowed()) {
-        Foswiki::Sandbox->sysCommand(
-            ($Foswiki::cfg{CustomMaketextPlugin}{ReloadCommand} || 'sudo service apache2 reload')
+         my (undef, $exit) = Foswiki::Sandbox->sysCommand(
+            ($Foswiki::cfg{CustomMaketextPlugin}{ReloadCommand} || 'sudo /usr/sbin/service apache2 reload')
         );
-        return 200;
+        unless ($exit) {
+            return 200;
+        } else {
+            return 403;
+        }
     }
     return 403;
 }
