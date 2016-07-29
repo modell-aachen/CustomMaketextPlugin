@@ -6,6 +6,7 @@ use warnings;
 
 # Core modules
 use Encode;
+require File::Spec;
 
 # Extra modules
 use Locale::PO;
@@ -231,10 +232,9 @@ sub _restSave{
 }
 sub _restcreateWebDir{
     my ($session, $subject, $verb, $response) = @_;
-    my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $web = $q->param('web');
-    my $file = "$Foswiki::cfg{LocalesDir}/$web";
+    my $file = File::Spec->catdir($Foswiki::cfg{LocalesDir}, $web);
     unless(mkdir $file) {
         die "Unable to create $file\n";
     }
