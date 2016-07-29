@@ -1,27 +1,21 @@
 ---+!! CustomMaketextPlugin
   You could use this plugin to create and manage ZZCustom - po-files.<br/>
-  On this Topic you could manage all:
-
-  CustomizeZZCustom
+  On this Topic you could manage all: [[System.CustomizeZZCustom]].
 
 
 ---++ Installation
 
-  This Plugin could easily installed via bin/configure.
-  To use the "restart webserver" action you have to<br/>
-  - change the sudoers file (Please allow the "www-data" user to restart the webserver.)<br/>
-  - set the user or group in bin/configure who should be allowed to restart the webserver
+This Plugin could easily installed via bin/configure.
+To use the "restart webserver" action you have to<br/>
+   * change the sudoers file (Please allow the "www-data" user to restart the webserver.)<br/>. Example <pre>
+www-data        ALL = (root) NOPASSWD: /usr/sbin/service apache2 reload </pre>
+   * set the user or group in bin/configure who should be allowed to restart the webserver
 
 ---++ Configuration
 
-* CUSTOMMAKETEXT_WEB 
-You can set the source/target WEB (default ZZCustom) with the Preference '   Set * CUSTOMMAKETEXT_WEB = ZZCustom'
-
-* Header
-You can customize the PO-Header in bin/configure
-
-* <noautolink>ReloadUser</noautolink>
-Set the User, who is allowed to restart the webserver from CustomizeZZCustom
+   * CUSTOMMAKETEXT_WEB: You can set the source/target WEB (default ZZCustom) with the Preference '   Set * CUSTOMMAKETEXT_WEB = ZZCustom'
+   * Header: You can customize the PO-Header in bin/configure
+   * <noautolink>ReloadUser</noautolink>: Set the User, who is allowed to restart the webserver from CustomizeZZCustom
 
 ---++ Info
 
