@@ -6,7 +6,7 @@
 $Foswiki::cfg{CustomMaketextPlugin}{Header} = "";
 
 # **STRING**
-# Set allowed group for execution of reload command
+# Set comma separated groups for execution of reload command.
 $Foswiki::cfg{CustomMaketextPlugin}{AllowReload} = "AdminGroup";
 
 # **STRING**

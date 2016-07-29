@@ -95,10 +95,9 @@ SCRIPT
     }
 
     my ( $translations, $languages ) = _readPOs($web);
-    my $html = '<div class="cmaketext">'._generateInfoText();
+    my $html = '<div class="cmaketext"><br/>%MAKETEXT{"On this page you can create custom translations for each language, which is activated."}%<br/><br/>';
     $html .= _generateLanguageSelect($web,$languages);
     $html .= _generateInputs($translations,$languages).'</div>';
-
 
     return $html;
 }
@@ -123,9 +122,6 @@ sub _readPOs{
         }
     }
     return ($translations, $languages);
-}
-sub _generateInfoText{
-    return '<br/>%MAKETEXT{"On this page you can create custom translations for each language, which is activated."}%<br/><br/>';
 }
 sub _generateLanguageSelect{
     my ( $web, $languages ) = @_;
