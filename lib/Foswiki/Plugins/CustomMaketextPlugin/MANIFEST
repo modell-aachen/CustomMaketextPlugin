@@ -1,5 +1,6 @@
 data/System/CustomMaketextPlugin.txt 0644
 data/System/CustomizeZZCustom.txt 0644
+lib/Foswiki/Plugins/CustomMaketextPlugin/Config.spec 0444
 lib/Foswiki/Plugins/CustomMaketextPlugin.pm 0444
 locale/CustomMaketextPlugin/de.po 0444
 pub/System/CustomMaketextPlugin/css/ui.css 0444
