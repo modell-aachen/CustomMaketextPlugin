@@ -50,7 +50,7 @@ sub initPlugin {
     Foswiki::Func::registerRESTHandler( 'addlanguage', \&_restAddLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'removelanguage', \&_restRemoveLanguage, %restopts );
     Foswiki::Func::registerRESTHandler( 'save', \&_restSave, %restopts );
-    Foswiki::Func::registerRESTHandler( 'createweb', \&_restcreateWebDir, %restopts );
+    Foswiki::Func::registerRESTHandler( 'createweb', \&_restCreateWebDir, %restopts );
     # GET enabled handlers
     $restopts{http_allow} = 'POST,GET';
     Foswiki::Func::registerRESTHandler( 'reloadhttpd', \&_restReloadHttpd, %restopts );
@@ -230,7 +230,7 @@ sub _restSave{
     $q->param( 'redirectto' => Foswiki::Func::getScriptUrl( 'System', 'CustomizeZZCustom', 'view' ) );
     return undef;
 }
-sub _restcreateWebDir{
+sub _restCreateWebDir{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $web = $q->param('web');

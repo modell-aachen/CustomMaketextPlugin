@@ -6,3 +6,5 @@ locale/CustomMaketextPlugin/de.po 0444
 pub/System/CustomMaketextPlugin/css/ui.css 0444
 pub/System/CustomMaketextPlugin/js/ui.js 0444
 pub/System/CustomMaketextPlugin/js/i18n/jsi18n.de.js 0444
+test/unit/CustomMaketextPlugin/CustomMaketextPluginTestCase.pm 0444
+test/unit/CustomMaketextPlugin/qwikitest 0444
