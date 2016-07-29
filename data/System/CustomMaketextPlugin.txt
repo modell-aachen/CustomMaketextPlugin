@@ -1,24 +1,31 @@
----+!! CustomMaketextPlugin
-  You could use this plugin to create and manage ZZCustom - po-files.<br/>
-  On this Topic you could manage all: [[System.CustomizeZZCustom]].
+This plugin creates and manages =.po= files in =locale/ZZCustom= or other directories configurable.
 
+The configuration interface can be found on at: [[System.CustomizeZZCustom]].
 
----++ Installation
+---++ Installation / Configuration
+Install and activate the plugin via =/bin/configure=.
 
-This Plugin could easily installed via bin/configure.
-To use the "restart webserver" action you have to<br/>
-   * change the sudoers file (Please allow the "www-data" user to restart the webserver.)<br/>. Example <pre>
+For the "Restart Webserver" action to function, you have to:
+   * Likely adapt the Option ={CustomMaketextPlugin}{ReloadCommand}=: This needs to be a command working for the webserver user to reload the webserver.
+      * This likely means changing the local sudoers file on the system. E.g:  <pre>
 www-data        ALL = (root) NOPASSWD: /usr/sbin/service apache2 reload </pre>
-   * set the user or group in bin/configure who should be allowed to restart the webserver
+   * Change the option ={CustomMaketextPlugin}{AllowReload}= to the Wiki groups allowed to reload the webserver.
 
----++ Configuration
+---+++ Additional configuration
+Local settings:
 
-   * CUSTOMMAKETEXT_WEB: You can set the source/target WEB (default ZZCustom) with the Preference '   Set * CUSTOMMAKETEXT_WEB = ZZCustom'
-   * Header: You can customize the PO-Header in bin/configure
-   * <noautolink>ReloadUser</noautolink>: Set the User, who is allowed to restart the webserver from CustomizeZZCustom
+   * =CUSTOMMAKETEXT_WEB=: You can set the source/target WEB (default ZZCustom) with the Preference<pre>
+   Set * CUSTOMMAKETEXT_WEB = ZZCustom</pre>
+   * ={CustomMaketextPlugin}{Header}=: You can customize the PO-Header in bin/configure
 
 ---++ Info
 
-|  Author: | IngoKruetzen |
+|  Author: | Ingo Kr&uuml;tzen |
+|  Copyright: | &copy; 2016, Ingo Kr&uuml;tzen et al. Modell Aachen GmbH |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Release: | %$RELEASE% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions in reverse order --> |
+|  1.0 | Initial release. |
 |  Home: | http://www.modell-aachen.de |
 |  Support: | http://www.modell-aachen.de |
