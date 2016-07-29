@@ -71,7 +71,7 @@ sub _reloadAllowed {
 
 # Text generators and REST handlers
 sub _customizeMaketext {
-    my( $session, $params, $topic, $web, $topicObject ) = @_;
+    my( $session, $params, $topic, undef, $topicObject ) = @_;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $pluginURL = '%PUBURLPATH%/%SYSTEMWEB%/CustomMaketextPlugin';
     my $styles = "<link rel='stylesheet' type='text/css' media='all' href='%PUBURLPATH%/%SYSTEMWEB%/FontAwesomeContrib/css/font-awesome.min.css?version=$RELEASE' /><link rel='stylesheet' type='text/css' media='all' href='%PUBURLPATH%/%SYSTEMWEB%/CustomMaketextPlugin/css/ui.css' />";
@@ -138,7 +138,7 @@ sub _generateLanguageSelect{
     my $count = 0;
     foreach ( sort {lc $a cmp lc $b} @allLanguages){
         my $lang = $_.'.po';
-        unless (exists %$languages->{$lang}){
+        unless (exists $languages->{$lang}){
             $count++;
             $res .= '<option value="'.$lang.'">'.$lang.'</option>';
         }
