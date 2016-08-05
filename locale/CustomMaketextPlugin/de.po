@@ -1,0 +1,33 @@
+# German translation for the InvestmentProposal-Application
+# Translators: Modell Aachen
+msgid ""
+msgstr ""
+"Project-Id-Version: CustomMaketextPlugin $Id\n"
+"Report-Msgid-Bugs-To: support@modell-aachen.de\n"
+"POT-Creation-Date: Mon Jul 25 16:46:22 2016\n"
+"PO-Revision-Date: Mon Jul 25 16:48:01 2016\n"
+"Last-Translator: Modell Aachen <access@modell-aachen.de>\n"
+"Language-Team: German <http://translate.modell-aachen.de/projects/custommaketextplugin\n"
+"/releaseriga/de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;.\n"
+"X-Generator: CustomMaketext"
+
+# add line to translations
+msgid "Add line"
+msgstr "Zeile hinzufügen"
+
+# add language-file to translations
+msgid "Add language"
+msgstr "Sprache hinzufügen"
+
+# create info text
+msgid "On this page you can create custom translations for each language, which is activated."
+msgstr "Auf dieser Seite können Sie neue Übersetzungen für die aktivierten Sprachen erstellen."
+
+# restart webserver
+msgid "Reload Webserver"
+msgstr "Webserver neustarten"

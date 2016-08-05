@@ -1,0 +1,31 @@
+This plugin creates and manages =.po= files in =locale/ZZCustom= or other directories configurable.
+
+The configuration interface can be found on at: [[System.CustomizeZZCustom]].
+
+---++ Installation / Configuration
+Install and activate the plugin via =/bin/configure=.
+
+For the "Restart Webserver" action to function, you have to:
+   * Likely adapt the Option ={CustomMaketextPlugin}{ReloadCommand}=: This needs to be a command working for the webserver user to reload the webserver.
+      * This likely means changing the local sudoers file on the system. E.g:  <pre>
+www-data        ALL = (root) NOPASSWD: /usr/sbin/service apache2 reload </pre>
+   * Change the option ={CustomMaketextPlugin}{AllowReload}= to the Wiki groups allowed to reload the webserver.
+
+---+++ Additional configuration
+Local settings:
+
+   * =CUSTOMMAKETEXT_WEB=: You can set the source/target WEB (default ZZCustom) with the Preference<pre>
+   Set * CUSTOMMAKETEXT_WEB = ZZCustom</pre>
+   * ={CustomMaketextPlugin}{Header}=: You can customize the PO-Header in bin/configure
+
+---++ Info
+
+|  Author: | Ingo Kr&uuml;tzen |
+|  Copyright: | &copy; 2016, Ingo Kr&uuml;tzen et al. Modell Aachen GmbH |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Release: | %$RELEASE% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions in reverse order --> |
+|  1.0 | Initial release. |
+|  Home: | http://www.modell-aachen.de |
+|  Support: | http://www.modell-aachen.de |
