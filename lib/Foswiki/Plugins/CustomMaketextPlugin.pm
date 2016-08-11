@@ -246,7 +246,7 @@ sub _restAddLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
-    return 403 unless $language =~ /^\w{2}(-\w{2})?\.po$/;
+    return 403 unless $language =~ /^[a-z\-]+\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || $DEFAULTHEADER;
     # $defHeader =~ s/\\n//g;
@@ -286,7 +286,7 @@ sub _restRemoveLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
-    return 403 unless $language =~ /^\w{2}(-\w{2})?\.po$/;
+    return 403 unless $language =~ /^[a-z\-]+\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $file = "$Foswiki::cfg{LocalesDir}/$web/$language";
     if(-f $file){
