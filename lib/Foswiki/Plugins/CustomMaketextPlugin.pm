@@ -234,6 +234,7 @@ sub _restcreateWebDir{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $web = $q->param('web');
+    return 403 unless $web =~ /^\w+$/;
     my $file = File::Spec->catdir($Foswiki::cfg{LocalesDir}, $web);
     unless(mkdir $file) {
         die "Unable to create $file\n";
@@ -245,7 +246,7 @@ sub _restAddLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
-    return unless defined $language;
+    return 403 unless $language =~ /^\w{2}(-\w{2})?\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || $DEFAULTHEADER;
     # $defHeader =~ s/\\n//g;
@@ -285,6 +286,7 @@ sub _restRemoveLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
+    return 403 unless $language =~ /^\w{2}(-\w{2})?\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $file = "$Foswiki::cfg{LocalesDir}/$web/$language";
     if(-f $file){
