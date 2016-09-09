@@ -92,7 +92,7 @@ SCRIPT
     my $path = "$Foswiki::cfg{LocalesDir}/$web/";
     unless(-d $path){
         Foswiki::Func::writeWarning("$path does not exist");
-        return '<div class="cmaketext"><form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/createweb" enctype="application/x-www-form-urlencoded"><p>'.$web.'-Web Does not exist.</p><input type="hidden" name="web" value="'.$web.'"><input type="submit" class="btn-primary saveall" value="%MAKETEXT{"Create Web"}%"></form></div>';
+        return '<div class="cmaketext"><form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/createweb" enctype="application/x-www-form-urlencoded"><p>%MAKETEXT{"[_1] translation folder does not exist." args="'.$web.'"}%</p><input type="hidden" name="web" value="'.$web.'"><input type="submit" class="btn-primary saveall" value="%MAKETEXT{"Create translation folder"}%"></form></div>';
     }
 
     my ( $translations, $languages ) = _readPOs($web);
