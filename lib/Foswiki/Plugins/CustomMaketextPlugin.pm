@@ -92,7 +92,7 @@ SCRIPT
     my $path = "$Foswiki::cfg{LocalesDir}/$web/";
     unless(-d $path){
         Foswiki::Func::writeWarning("$path does not exist");
-        return '<div class="cmaketext"><form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/createweb" enctype="application/x-www-form-urlencoded"><p>'.$web.'-Web Does not exist.</p><input type="hidden" name="web" value="'.$web.'"><input type="submit" class="btn-primary saveall" value="%MAKETEXT{"Create Web"}%"></form></div>';
+        return '<div class="cmaketext"><form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/createweb" enctype="application/x-www-form-urlencoded"><p>%MAKETEXT{"[_1] translation folder does not exist." args="'.$web.'"}%</p><input type="hidden" name="web" value="'.$web.'"><input type="submit" class="btn-primary saveall" value="%MAKETEXT{"Create translation folder"}%"></form></div>';
     }
 
     my ( $translations, $languages ) = _readPOs($web);
@@ -234,6 +234,7 @@ sub _restCreateWebDir{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $web = $q->param('web');
+    return 403 unless $web =~ /^\w+$/;
     my $file = File::Spec->catdir($Foswiki::cfg{LocalesDir}, $web);
     unless(mkdir $file) {
         die "Unable to create $file\n";
@@ -245,7 +246,7 @@ sub _restAddLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
-    return unless defined $language;
+    return 403 unless $language =~ /^[a-z\-]+\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $defHeader = $Foswiki::cfg{CustomMaketextPlugin}{Header} || $DEFAULTHEADER;
     # $defHeader =~ s/\\n//g;
@@ -285,6 +286,7 @@ sub _restRemoveLanguage{
     my ($session, $subject, $verb, $response) = @_;
     my $q = $session->{request};
     my $language = $q->param('language');
+    return 403 unless $language =~ /^[a-z\-]+\.po$/;
     my $web = Foswiki::Func::getPreferencesValue("CUSTOMMAKETEXT_WEB") || 'ZZCustom';
     my $file = "$Foswiki::cfg{LocalesDir}/$web/$language";
     if(-f $file){
