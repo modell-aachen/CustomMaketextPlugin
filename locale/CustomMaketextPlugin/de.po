@@ -31,3 +31,11 @@ msgstr "Auf dieser Seite können Sie neue Übersetzungen für die aktivierten Sp
 # restart webserver
 msgid "Reload Webserver"
 msgstr "Webserver neustarten"
+
+# localization folder does not exist
+msgid "%1 translation folder does not exist."
+msgstr "Übersetzungsordner '%1' existiert nicht."
+
+# create button
+msgid "Create translation folder"
+msgstr "Übersetzungsordner erstellen"
