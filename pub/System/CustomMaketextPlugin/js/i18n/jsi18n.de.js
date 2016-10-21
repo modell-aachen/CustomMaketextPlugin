@@ -12,6 +12,7 @@ if (jsi18n && typeof jsi18n.add === "function") {
     "Webserver successfully restarted. It could take a few minutes to see the changes.":"Webserver wurde erfolgreich neugestartet. Es kann jedoch ein paar Minuten dauern ehe die Änderungen sichtbar sind.",
     "You are not allowed to restart webserver.":"Sie sind nicht berechtigt, den Webserver neuzustarten",
     "Internal Server Error":"Interner Server Fehler",
-    "Some user's could get an Error-404.":"Einige Nutzer können während des Neustarts einen Fehler bekommen."
+    "Some user's could get an Error-404.":"Einige Nutzer können während des Neustarts einen Fehler bekommen.",
+    "You are not allowed.":"Sie sind hierzu nicht berechtigt."
   });
 }
