@@ -23,6 +23,9 @@
         dataType: "html"
       }).done(function() {
         $.unblockUI();
+      }).error(function(){
+        $.unblockUI();
+        swal(jsi18n.get('custommaketext',"ERROR"), jsi18n.get('custommaketext',"You are not allowed."), "error");
       });
     });
     $('.addline').bind('click', function(){
