@@ -14,13 +14,13 @@
 .cmaketext select{
     margin-right: 10px;
 }
-.cmaketext input[type=submit], .cmaketext input[type=button]{
+.cmaketext input[type=submit], .cmaketext .btn, .cmaketext input[type=button]{
     background: #59C;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
 }
-.cmaketext input[type=submit]:hover, .cmaketext input[type=button]:hover{
+.cmaketext input[type=submit]:hover,.cmaketext .btn:hover, .cmaketext input[type=button]:hover{
     background: #59E;
     box-shadow:none;
     -moz-box-shadow:none;

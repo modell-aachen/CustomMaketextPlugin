@@ -7,9 +7,28 @@
       $.blockUI();
     });
     $('.saveall').bind('click', function(){
+      $data = {};
+      $lastElem = $('.pobody tr:last input:first').attr('name');
+      $lastElem = $lastElem.replace('_com','');
+      $data['lastR'] = $lastElem;
+      $('.pobody tr input').each(function(){
+        $encoded = $('<div/>').text($(this).val()).html(); 
+        $data[$(this).attr('name')] = $encoded;
+      });
       $.blockUI();
+      $.ajax({
+        url: foswiki.getScriptUrl('rest')+"/CustomMaketextPlugin/save",
+        data: $data,
+        method: "POST",
+        dataType: "html"
+      }).done(function() {
+        $.unblockUI();
+      });
     });
     $('.addline').bind('click', function(){
+      if($('.pobody').parent().find('thead th.header').length < 4){
+        return false;
+      }
       var $count = parseInt($('.pobody tr:last').attr('data-count'))+1;
       var $newElem = $('.pobody tr:last').clone();
       $newElem.removeAttr('style');

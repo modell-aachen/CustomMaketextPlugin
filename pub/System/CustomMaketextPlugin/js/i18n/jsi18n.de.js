@@ -1,6 +1,6 @@
 if (jsi18n && typeof jsi18n.add === "function") {
   jsi18n.add("custommaketext", {
-    "The line will be removed. After you save the translations you will not be able to recover deleted lines.": "Diese Zeile wird gelöscht. Sobald Sie auf Speichern geklickt haben, wird es nicht mehr möglich sein diese Zeile widerherzustellen.",
+    "The line will be removed. After you save the translations you will not be able to recover deleted lines.": "Diese Zeile wird gelöscht. Sobald Sie auf Speichern geklickt haben, wird es nicht mehr möglich sein diese Zeile wiederherzustellen.",
     "Cancel":"Abbrechen",
     "Deleted!": "Gelöscht!",
     "Restart": "Neustart",

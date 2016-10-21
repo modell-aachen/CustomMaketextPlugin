@@ -153,7 +153,7 @@ sub _generateLanguageSelect{
 sub _generateInputs{
     my ( $translations, $languages ) = @_;
     my $res = '<form id="removeLangForm" method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/removelanguage" enctype="application/x-www-form-urlencoded"><input type="hidden" id="removeLangField" name="language" value=""></form>';
-    $res .= '<form method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/save" enctype="application/x-www-form-urlencoded">';
+    $res .= '';
     $res .= '<br/><br/><table class="tablesorter custom"><thead><tr><th>%MAKETEXT{"Comment"}%</th><th>en</th>';
     foreach my $lang ( sort {lc $a cmp lc $b} keys %$languages){
         $res .= '<th><span>' . $lang;
@@ -185,7 +185,8 @@ sub _generateInputs{
     }
     $res .= '</tbody></table>';
     $res .= '<br/><i style="color:green; cursor: pointer;" class="fa fa-plus addline" aria-hidden="true">%MAKETEXT{"Add line"}%</i><br/><br/>';
-    $res .= '<input type="submit" value="%MAKETEXT{"Save"}%" class="btn-primary saveall"/></form>';
+    $res .= '';
+    $res .= '<a class="btn btn-primary saveall">%MAKETEXT{"Save"}%</a>';
     # Add Reload button if allowed
     if (_reloadAllowed()) {
         $res .= '<div class="apache2"><input type="button" value="%MAKETEXT{"Reload Webserver"}%" class="btn-primary reloadhttpd"/></div>';
@@ -203,13 +204,14 @@ sub _restSave{
         # loop all language-translations
         my $pos = {};
         my $count = 0;
-        while($count > -1){
+        my $last = $q->param('lastR');
+        while($count <= $last){
             my $msgid = $q->param($count.'_str');
             my $isHead = $q->param($count.'_head_str');
             unless(defined $isHead){
                 unless(defined $msgid){
-                    $count = -1;
-                    last;
+                    $count ++;
+                    next;
                 }
             }
             my $msgstr = $q->param($lang.'_'.$count);
