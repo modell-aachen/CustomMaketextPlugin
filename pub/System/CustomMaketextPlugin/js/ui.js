@@ -8,11 +8,10 @@
     });
     $('.saveall').bind('click', function(){
       $data = {};
-      $lastElem = $('.pobody tr:last input:first').attr('name');
-      $lastElem = $lastElem.replace('_com','');
+      $lastElem = $('.pobody').find('tr:visible').length;
       $data['lastR'] = $lastElem;
       $('.pobody tr input').each(function(){
-        $encoded = $('<div/>').text($(this).val()).html(); 
+        $encoded = $('<div/>').text($(this).val()).html();
         $data[$(this).attr('name')] = $encoded;
       });
       $.blockUI();
