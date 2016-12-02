@@ -39,7 +39,7 @@ sub initPlugin {
     my ( $topic, $web, $user, $installWeb ) = @_;
     # check for Plugins.pm versions
     if ( $Foswiki::Plugins::VERSION < 2.0 ) {
-     Foswiki::Func::writeWarning( 'Version mismatch between ', 
+     Foswiki::Func::writeWarning( 'Version mismatch between ',
         __PACKAGE__, ' and Plugins.pm' );
      return 0;
     }
@@ -117,8 +117,9 @@ sub _readPOs{
         foreach my $f ( keys %$href ) {
             my $po = $href->{$f};
             next unless defined $po->{msgid};
-            $translations->{ Encode::decode_utf8($po->{msgid}) } -> {$file}-> {str} = Encode::decode_utf8($po->{msgstr});
-            $translations->{ Encode::decode_utf8($po->{msgid}) } -> {$file}-> {com} = Encode::decode_utf8($po->{comment});
+            my $msgid = Encode::decode_utf8($po->{msgid});
+            $translations->{ $msgid } -> {$file}-> {str} = Encode::decode_utf8($po->{msgstr});
+            $translations->{ $msgid } -> {$file}-> {com} = Encode::decode_utf8($po->{comment});
             $languages->{$file} = 1;
         }
     }
@@ -160,11 +161,12 @@ sub _generateInputs{
         $res .= '</span><i data-lang="'.$lang.'" class="fa fa-trash remove-lang" aria-hidden="true"></i>';
         $res .= '</th>';
     }
-    $res .= '<th><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
+    $res .= '<th style="display:none;"><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
     my $count = 0;
     foreach my $msgid ( sort {lc $a cmp lc $b} keys %$translations ) {
         my $msgid_norm = $msgid;
-        $msgid_norm =~ s/"//g;
+        $msgid_norm =~ s/\\"/&quot;/g;
+        $msgid_norm =~ s/(^"|"$)//g;
         my $comment = '';
         my $inputs = '';
         foreach my $lang ( sort {lc $a cmp lc $b} keys %$languages){
@@ -172,13 +174,14 @@ sub _generateInputs{
                 $comment = $translations->{$msgid}->{$lang}->{com};
             }
             my $str = $translations->{$msgid}->{$lang}->{str};
-            $str =~ s/"//g;
+            $str =~ s/\\"/&quot;/g;
+            $str =~ s/(^"|"$)//g;
             $inputs .=  '<td style="display: table-cell;padding: 1em;"><literal><input type="text" name="'.$lang.'_'.$count.'" value="'.$str.'"/></literal></td>';
         }
         my $style = ($msgid_norm eq '')? 'display: none;' : '';
         $res .= '<tr data-count="'.$count.'" style="'.$style.'"><td><input type="text" name="'.$count.'_com" value="' . $comment . '"/></td>';
         $res .= '<td><input type="text" name="'.(($msgid_norm eq '')? $count.'_head' : $count).'_str" value="' . $msgid_norm . '"/></td>' . $inputs;
-        $res .= '<td style="text-align: center;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
+        $res .= '<td style="text-align: center; display:none;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
         $comment = '';
         $inputs = '';
         $count ++;
