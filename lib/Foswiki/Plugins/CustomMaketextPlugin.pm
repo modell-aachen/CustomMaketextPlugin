@@ -161,7 +161,7 @@ sub _generateInputs{
         $res .= '</span><i data-lang="'.$lang.'" class="fa fa-trash remove-lang" aria-hidden="true"></i>';
         $res .= '</th>';
     }
-    $res .= '<th><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
+    $res .= '<th style="display:none;"><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
     my $count = 0;
     foreach my $msgid ( sort {lc $a cmp lc $b} keys %$translations ) {
         my $msgid_norm = $msgid;
@@ -181,7 +181,7 @@ sub _generateInputs{
         my $style = ($msgid_norm eq '')? 'display: none;' : '';
         $res .= '<tr data-count="'.$count.'" style="'.$style.'"><td><input type="text" name="'.$count.'_com" value="' . $comment . '"/></td>';
         $res .= '<td><input type="text" name="'.(($msgid_norm eq '')? $count.'_head' : $count).'_str" value="' . $msgid_norm . '"/></td>' . $inputs;
-        $res .= '<td style="text-align: center;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
+        $res .= '<td style="text-align: center; display:none;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
         $comment = '';
         $inputs = '';
         $count ++;
