@@ -11,10 +11,13 @@
     $.tablesorter.defaults.textExtraction = function(node) {
       return node.childNodes[0].value;
     };
+    // before sorting, update tablesorter cache
+    $("table.tablesorter th").bind('click', function() {
+      $("table.tablesorter").trigger("update");
+    });
 
     $('.addlanguage').bind('click', function(){
       $.blockUI();
-      $('table.tablesorter').trigger('update');
     });
 
     $('.saveall').bind('click', function(){
@@ -84,17 +87,9 @@
       $('.pobody').append($newElem);
       // bind event listener to newly created text input fields 
       $newElem.find('input').bind('blur', function() {
-        $('table.tablesorter').trigger('update');
       });
-      $('table.tablesorter').trigger('update');
       bindRemove();
     });
-
-    // bind update of table sorter cache to the 'focus lost' event of the inputs 
-    $('.pobody input:visible[type="text"]').bind('blur', function() {
-      $('table.tablesorter').trigger('update');
-    });
-
   });
 
   // helper function
@@ -122,8 +117,6 @@
       },
       function(){
         $line.closest('tr').remove();
-        $('table.tablesorter').trigger('update');
-        // swal(jsi18n.get('custommaketext',"Deleted!"), jsi18n.get('custommaketext',"The line was successfully deleted."), "success");
       });
     });
   }
@@ -146,7 +139,6 @@
           //get form
           $('#removeLangField').val($lang);
           $('#removeLangForm').submit();
-          $('table.tablesorter').trigger('update');
       });
     });
   }
