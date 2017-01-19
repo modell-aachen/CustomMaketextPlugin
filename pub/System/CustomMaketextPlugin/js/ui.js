@@ -67,7 +67,7 @@
 
     $('.addline').bind('click', function(){
       // if no language was added yet the user should not be able to add new lines
-      if($('.pobody').parent().find('thead th.header').length < 4){
+      if($('.pobody').parent().find('thead th.header').length < 3){
         return false;
       }
       var $dataCounts = $('.pobody tr').map(function() {
@@ -85,9 +85,6 @@
         $(this).attr('value','');
       });
       $('.pobody').append($newElem);
-      // bind event listener to newly created text input fields 
-      $newElem.find('input').bind('blur', function() {
-      });
       bindRemove();
     });
   });
