@@ -161,7 +161,7 @@ sub _generateInputs{
         $res .= '</span><i data-lang="'.$lang.'" class="fa fa-trash remove-lang" aria-hidden="true"></i>';
         $res .= '</th>';
     }
-    $res .= '<th><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
+    $res .= '<th class="{sorter: false}"><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
     my $count = 0;
     foreach my $msgid ( sort {lc $a cmp lc $b} keys %$translations ) {
         my $msgid_norm = $msgid;
