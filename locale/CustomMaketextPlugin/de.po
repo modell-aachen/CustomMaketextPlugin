@@ -39,3 +39,7 @@ msgstr "Übersetzungsordner '%1' existiert nicht."
 # create button
 msgid "Create translation folder"
 msgstr "Übersetzungsordner erstellen"
+
+# all languages selected info text
+msgid "All languages are visible. To add new, activate language in bin/configure 'Internationalisation'"
+msgstr "All Sprachen sind sichtbar. Um neue Sprachen hinzuzufügen, aktivieren Sie sie auf bin/configure unter 'Internationalisation'"
