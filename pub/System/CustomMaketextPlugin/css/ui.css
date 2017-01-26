@@ -11,6 +11,9 @@
     -o-transition: all 0.30s ease-in-out;
     outline: none;
 }
+.cmaketext input[type=text] {
+    width: 100%;
+}
 .cmaketext select{
     margin-right: 10px;
 }
@@ -27,13 +30,13 @@
     -webkit-box-shadow:none;
     cursor: pointer;
 }
-.apache2 {
+.cmaketext .apache2 {
     float: right;
 }
-.cmaketext .apache2 input[type=button]:hover{
+.cmaketext .apache2:hover{
     background-color: #D40202;
 }
-.cmaketext .apache2 input[type=button]{
+.cmaketext .apache2 {
     background-color: #AD0202;
 }
 .cmaketext .tablesorter.custom td {
@@ -45,20 +48,22 @@
     color: #FFF;
     display: table-cell;
     text-align: center;
-    padding: 1em;
+    padding: .75em;
     margin: .5em 1em;
+}
+.cmaketext .tablesorter thead tr .header { 
+    background-image: url(../../JQTableSorterPlugin/styles/bg_white.gif); 
+}
+.cmaketext .tablesorter thead tr .headerSortDown {
+    background-image: url(../../JQTableSorterPlugin/styles/desc_white.gif);   
+}
+.cmaketext .tablesorter thead tr .headerSortUp {
+    background-image: url(../../JQTableSorterPlugin/styles/asc_white.gif);   
 }
 .cmaketext i.fa-trash{
     padding-left: 10px;
     cursor: pointer;
 }
-.cmaketext i.remove-msgid{
-    color: red;
-}
-.cmaketext i.remove-lang {
-    color: #770303;
-}
-
 .sweet-alert p{
     margin-bottom: 30px !important;
 }

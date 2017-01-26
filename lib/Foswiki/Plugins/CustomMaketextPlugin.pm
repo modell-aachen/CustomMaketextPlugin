@@ -161,7 +161,7 @@ sub _generateInputs{
         $res .= '</span><i data-lang="'.$lang.'" class="fa fa-trash remove-lang" aria-hidden="true"></i>';
         $res .= '</th>';
     }
-    $res .= '<th style="display:none;"><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
+    $res .= '<th class="{sorter: false}"><span>%MAKETEXT{"Action"}%</span></th></tr></thead><tbody class="pobody">';
     my $count = 0;
     foreach my $msgid ( sort {lc $a cmp lc $b} keys %$translations ) {
         my $msgid_norm = $msgid;
@@ -181,18 +181,18 @@ sub _generateInputs{
         my $style = ($msgid_norm eq '')? 'display: none;' : '';
         $res .= '<tr data-count="'.$count.'" style="'.$style.'"><td><input type="text" name="'.$count.'_com" value="' . $comment . '"/></td>';
         $res .= '<td><input type="text" name="'.(($msgid_norm eq '')? $count.'_head' : $count).'_str" value="' . $msgid_norm . '"/></td>' . $inputs;
-        $res .= '<td style="text-align: center; display:none;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
+        $res .= '<td style="text-align: center;"><i class="fa fa-trash remove-msgid" aria-hidden="true"></i></td></tr>';
         $comment = '';
         $inputs = '';
         $count ++;
     }
     $res .= '</tbody></table>';
-    $res .= '<br/><i style="color:green; cursor: pointer;" class="fa fa-plus addline" aria-hidden="true">%MAKETEXT{"Add line"}%</i><br/><br/>';
-    $res .= '';
-    $res .= '<a class="btn btn-primary saveall">%MAKETEXT{"Save"}%</a>';
+    $res .= '<br/><a class="btn btn-primary addline"><i class="fa fa-plus" aria-hidden="true"></i>  %MAKETEXT{"Add line"}%</a>';
+    $res .= ' ';
+    $res .= '<a class="btn btn-primary saveall"><i class="fa fa-save" aria-hidden="true"></i> %MAKETEXT{"Save"}%</a>';
     # Add Reload button if allowed
     if (_reloadAllowed()) {
-        $res .= '<div class="apache2"><input type="button" value="%MAKETEXT{"Reload Webserver"}%" class="btn-primary reloadhttpd"/></div>';
+        $res .= '<a class="btn btn-primary apache2 reloadhttpd"><i class="fa fa-rotate-left" aria-hidden="true"></i> %MAKETEXT{"Reload Webserver"}%</a>';
     }
     return $res;
 }
