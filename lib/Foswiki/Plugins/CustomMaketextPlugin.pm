@@ -170,7 +170,7 @@ sub _generateInputs{
         my $comment = '';
         my $inputs = '';
         foreach my $lang ( sort {lc $a cmp lc $b} keys %$languages){
-            if ($comment eq '' && $translations->{$msgid}->{$lang}->{com} ne '') {
+            if ($comment eq '' && defined $translations->{$msgid}->{$lang}->{com}) {
                 $comment = $translations->{$msgid}->{$lang}->{com};
             }
             my $str = $translations->{$msgid}->{$lang}->{str};
