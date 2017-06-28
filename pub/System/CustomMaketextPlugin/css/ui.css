@@ -51,15 +51,6 @@
     padding: .75em;
     margin: .5em 1em;
 }
-.cmaketext .tablesorter thead tr .header { 
-    background-image: url(../../JQTableSorterPlugin/styles/bg_white.gif); 
-}
-.cmaketext .tablesorter thead tr .headerSortDown {
-    background-image: url(../../JQTableSorterPlugin/styles/desc_white.gif);   
-}
-.cmaketext .tablesorter thead tr .headerSortUp {
-    background-image: url(../../JQTableSorterPlugin/styles/asc_white.gif);   
-}
 .cmaketext i.fa-trash{
     padding-left: 10px;
     cursor: pointer;
