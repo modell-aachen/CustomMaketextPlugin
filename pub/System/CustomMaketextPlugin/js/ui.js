@@ -4,18 +4,6 @@
     bindRemoveLanguage();
     bindRestartApache();
 
-    // configure the table sorter
-    // initial sort: second column (en), asc
-    $.tablesorter.defaults.sortList = [[1, 0]];
-    // defines how data is extracted from the td elements
-    $.tablesorter.defaults.textExtraction = function(node) {
-      return node.childNodes[0].value;
-    };
-    // before sorting, update tablesorter cache
-    $("table.tablesorter th").bind('click', function() {
-      $("table.tablesorter").trigger("update");
-    });
-
     $('.addlanguage').bind('click', function(){
       $.blockUI();
     });
@@ -67,7 +55,7 @@
 
     $('.addline').bind('click', function(){
       // if no language was added yet the user should not be able to add new lines
-      if($('.pobody').parent().find('thead th.header').length < 3){
+      if($('.pobody').parent().find('thead th').length < 4){
         return false;
       }
       var $dataCounts = $('.pobody tr').map(function() {

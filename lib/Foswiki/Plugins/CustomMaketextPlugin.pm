@@ -155,9 +155,9 @@ sub _generateInputs{
     my ( $translations, $languages ) = @_;
     my $res = '<form id="removeLangForm" method="POST" action="%SCRIPTURL{rest}%/CustomMaketextPlugin/removelanguage" enctype="application/x-www-form-urlencoded"><input type="hidden" id="removeLangField" name="language" value=""></form>';
     $res .= '';
-    $res .= '<br/><br/><table class="tablesorter custom"><thead><tr><th>%MAKETEXT{"Comment"}%</th><th>en</th>';
+    $res .= '<br/><br/><table class="tablesorter custom"><thead><tr><th class="{sorter: false}">%MAKETEXT{"Comment"}%</th><th class="{sorter: false}">en</th>';
     foreach my $lang ( sort {lc $a cmp lc $b} keys %$languages){
-        $res .= '<th><span>' . $lang;
+        $res .= '<th class="{sorter: false}"><span>' . $lang;
         $res .= '</span><i data-lang="'.$lang.'" class="fa fa-trash remove-lang" aria-hidden="true"></i>';
         $res .= '</th>';
     }
